@@ -1,3 +1,4 @@
+//"SPDX-License-Identifier: MIT"
 pragma solidity 0.6.11;
 
 
@@ -9,11 +10,11 @@ contract Whitelist {
 
 function authorize (address _address) public returns(bool whitelisted){
 
-whitelist[_address] = true
+whitelist[_address] = true;
 
-emit Authorized(_address, "is authorized")
+emit Authorized(_address, "is authorized");
 
-return true
+return true;
 
 }
 
