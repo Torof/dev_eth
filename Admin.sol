@@ -1,12 +1,14 @@
 //"SPDX-License-Identifier: MIT"
 
-import "https://github.com/OpenZeppelin/openzeppelin-contracts/contracts/access/Ownable.sol";
+// import "https://github.com/OpenZeppelin/openzeppelin-contracts/contracts/access/Ownable.sol";
+import "/home/torof/node_modules/@openzeppelin/contracts/access/Ownable.sol";
+
   
-pragma solidity 0.6.11;
+pragma solidity >=0.6.11;
 
 contract Admin is Ownable {
-    mapping(address => bool)Whitelist;
-    mapping(address => bool)Blacklist;
+    mapping(address => bool)whitelist;
+    mapping(address => bool)blacklist;
 
     event Whitelisted(address _toWhiteList, string text );
     event Blacklisted(address _toBlacklist, string text );
@@ -14,19 +16,19 @@ contract Admin is Ownable {
     // event isListed(address _isListed, string text);
 
     function whitelist(address _toWhiteList) public onlyOwner returns(bool){
-        Whitelist[_toWhiteList] = true;
+        whitelist[_toWhiteList] = true;
         emit Whitelisted(_toWhiteList, "is now white listed");
         return true;
     }
 
     function blacklist (address _toBlacklist) public onlyOwner returns(bool){
-        Blacklist[_toBlacklist] = true;
+        blacklist[_toBlacklist] = true;
         emit Blacklisted(_toBlacklist, "is now blacklisted");
         return true;
     }
 
     function isBlacklisted (address _toCheck) public returns(bool){
-        if(Blacklist[_toCheck] == true){
+        if(blacklist[_toCheck] == true){
             emit Blacklisted(_toCheck, "is black listed");
             return  true;
         } else {
@@ -36,7 +38,7 @@ contract Admin is Ownable {
     }
 
     function isWhiteListed (address _toCheck) public returns(bool){
-        if(Whitelist[_toCheck] == true){
+        if(whitelist[_toCheck] == true){
             emit Whitelisted(_toCheck, "is white listed");
             return  true;
         } else {
@@ -46,10 +48,10 @@ contract Admin is Ownable {
     }
 
     function removeFromBlackList (address _toRemove) public onlyOwner {
-        Blacklist[_toRemove] = false; 
+        blacklist[_toRemove] = false; 
     }
 
     function removeFromWhiteList (address _toRemove) public onlyOwner {
-        Whitelist[_toRemove] = false;
+        whitelist[_toRemove] = false;
     }
 }
