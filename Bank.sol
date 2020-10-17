@@ -1,8 +1,9 @@
 //SPDX-License-Identifier: MIT
 
-pragma solidity >=0.6.11;
 
-import "/home/torof/node_modules/@openzeppelin/contracts/math/SafeMath.sol";
+import "https://github.com/OpenZeppelin/openzeppelin-contracts/blob/master/contracts/math/SafeMath.sol";
+
+pragma solidity >=0.6.11;
 
 contract Bank {
     using SafeMath for uint;

@@ -120,4 +120,8 @@ contract Voting is Ownable {
     return( winningProposalId, winningProposal );
   }
 
+<<<<<<< HEAD
 }
+=======
+}
+>>>>>>> df4c23fe74757ccc69ea0fb9414c3138e53b73f7

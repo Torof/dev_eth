@@ -1,7 +1,7 @@
 //"SPDX-License-Identifier: MIT"
 
-// import "https://github.com/OpenZeppelin/openzeppelin-contracts/contracts/access/Ownable.sol";
-import "/home/torof/node_modules/@openzeppelin/contracts/access/Ownable.sol";
+import "https://github.com/OpenZeppelin/openzeppelin-contracts/contracts/access/Ownable.sol";
+
 
   
 pragma solidity >=0.6.11;
