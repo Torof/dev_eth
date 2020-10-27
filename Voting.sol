@@ -47,45 +47,45 @@ contract Voting is Ownable {
 
 
   function whitelist(address _toWhitelist) public onlyOwner {
-    require(status == WorkflowStatus.RegisteringVoters, "not the time to add voters");
-    require(!voters[_toWhitelist].isRegistered, "voter is already registered");
+    require(status == WorkflowStatus.RegisteringVoters, "wrong workflow");
+    require(!voters[_toWhitelist].isRegistered, "already registered");
     
     voters[_toWhitelist].isRegistered = true;
     emit VoterRegistered(_toWhitelist);
   }
 
   function startProposalSession() public onlyOwner {
-    require(status == WorkflowStatus.RegisteringVoters, "not the time to iniate proposal registering session");
+    require(status == WorkflowStatus.RegisteringVoters, "wrong workflow");
    status = WorkflowStatus.ProposalsRegistrationStarted;
    emit WorkflowStatusChange(WorkflowStatus.RegisteringVoters, WorkflowStatus.ProposalsRegistrationStarted);
-   emit ProposalsRegistrationStarted(" proposal registration session started");
+   emit ProposalsRegistrationStarted(" proposal registration started");
   }
 
   function endProposalSession() public onlyOwner {
-    require(status == WorkflowStatus.ProposalsRegistrationStarted, "registering proposal not in progress");
+    require(status == WorkflowStatus.ProposalsRegistrationStarted, "wrong workflow");
     status = WorkflowStatus.ProposalsRegistrationEnded;
     emit WorkflowStatusChange(WorkflowStatus.ProposalsRegistrationStarted , WorkflowStatus.ProposalsRegistrationEnded);
-    emit ProposalsRegistrationEnded(" proposal registration session ended");
+    emit ProposalsRegistrationEnded(" proposal registration ended");
   }
 
   function startVotingSession() public onlyOwner {
-    require(status == WorkflowStatus.ProposalsRegistrationEnded, "not the time to iniate voting session");
+    require(status == WorkflowStatus.ProposalsRegistrationEnded, "Wrong workflow");
     status = WorkflowStatus.VotingSessionStarted;
     emit WorkflowStatusChange(WorkflowStatus.ProposalsRegistrationEnded , WorkflowStatus.VotingSessionStarted);
-    emit ProposalsRegistrationStarted("voting session started");
+    emit ProposalsRegistrationStarted("voting started");
   }
 
   function endVotingSession() public onlyOwner {
-    require(status == WorkflowStatus.VotingSessionStarted, "voting session not in process");
+    require(status == WorkflowStatus.VotingSessionStarted, "Wrong workflow");
     status = WorkflowStatus.VotingSessionEnded;
     emit WorkflowStatusChange(WorkflowStatus.VotingSessionStarted , WorkflowStatus.VotingSessionEnded);
-    emit VotingSessionEnded("voting session is ended");
+    emit VotingSessionEnded("voting ended");
   }
 
   function createProposal(string memory _proposal) public {
     require(status == WorkflowStatus.ProposalsRegistrationStarted, "not time to register proposal");
     require(voters[msg.sender].isRegistered == true, "address not allowed");
-    require(voters[msg.sender].hasSubmittedProposal != true, "voter already submitted proposal");
+    require(voters[msg.sender].hasSubmittedProposal != true, "proposal already submitted");
     
     proposalsArray.push(Proposal({
       description: _proposal,
@@ -97,7 +97,7 @@ contract Voting is Ownable {
   function vote(uint _proposalId) public {
     require(status == WorkflowStatus.VotingSessionStarted, "it's not time for voting");
     require(voters[msg.sender].isRegistered == true, "user is not permitted to vote");
-    require(voters[msg.sender].hasVoted != true, "user has already voted");
+    require(voters[msg.sender].hasVoted != true, "already voted");
 
     proposalsArray[_proposalId].voteCount++;
     voters[msg.sender].hasVoted = true;
@@ -120,8 +120,3 @@ contract Voting is Ownable {
     return( winningProposalId, winningProposal );
   }
 
-<<<<<<< HEAD
-}
-=======
-}
->>>>>>> df4c23fe74757ccc69ea0fb9414c3138e53b73f7
