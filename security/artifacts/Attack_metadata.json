@@ -1,0 +1,64 @@
+{
+	"compiler": {
+		"version": "0.6.11+commit.5ef660b1"
+	},
+	"language": "Solidity",
+	"output": {
+		"abi": [
+			{
+				"inputs": [
+					{
+						"internalType": "contract KingOfEther",
+						"name": "_kingOfEther",
+						"type": "address"
+					}
+				],
+				"stateMutability": "nonpayable",
+				"type": "constructor"
+			},
+			{
+				"inputs": [],
+				"name": "attack",
+				"outputs": [],
+				"stateMutability": "payable",
+				"type": "function"
+			}
+		],
+		"devdoc": {
+			"kind": "dev",
+			"methods": {},
+			"version": 1
+		},
+		"userdoc": {
+			"kind": "user",
+			"methods": {},
+			"version": 1
+		}
+	},
+	"settings": {
+		"compilationTarget": {
+			"localhost/security/kingOfEther.sol": "Attack"
+		},
+		"evmVersion": "istanbul",
+		"libraries": {},
+		"metadata": {
+			"bytecodeHash": "ipfs"
+		},
+		"optimizer": {
+			"enabled": true,
+			"runs": 200
+		},
+		"remappings": []
+	},
+	"sources": {
+		"localhost/security/kingOfEther.sol": {
+			"keccak256": "0x62bcea9726962673b416ec7fedc53c7cc53afbf3c0f830a8151e785307a18702",
+			"license": "UNLICENSED",
+			"urls": [
+				"bzz-raw://7577563954e0ed6c2fc3af0a646904c8b75ac7c45f24f359476f9ebe18acbcda",
+				"dweb:/ipfs/QmVcBbY3H9aKxT9nzqWvjJBaquw3vSCemDrFNLttDUQNMM"
+			]
+		}
+	},
+	"version": 1
+}
